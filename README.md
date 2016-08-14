@@ -6,10 +6,10 @@ It's like Boggle, but for math nerds. The longer the equation and the more compl
 
 ## Development Notes
 
-This is actually v2. You can find a fully-functional version of [v1 here](https://github.com/lancesnider/math-boggle). I just wanted to try it again, but better. 
+This is actually v2. You can find a fully functional version of [v1 here](https://github.com/lancesnider/math-boggle). I just wanted to try it again, but better. 
 
 #### Differences between [v1](https://github.com/lancesnider/math-boggle) and v2: 
 
 1. I won't be using `eval` to run the equations. Instead each operation will have its own function. 
-2. I'll be using Flux archetecture so there isn't such a spiderweb of updating components. 
-3. I'll run tests, specifically useing Enzyme. 
+2. I'll be using Flux architecture so there isn't such a spider web of updating components. 
+3. I'll run tests, specifically using Enzyme. 
