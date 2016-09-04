@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Scoreboard from './components/Scoreboard'
+import TimeTracker from './components/TimeTracker'
 
 class App extends Component {
   render() {
     return (
       <div className="App math-boggle">
-        <div>Time Left: 157</div>
-        <div>Score: 23</div>
+        <TimeTracker />
+        <Scoreboard />
         <button className="button play green" disabled="true">Play</button>
         <div>
           <div className="feedback">
