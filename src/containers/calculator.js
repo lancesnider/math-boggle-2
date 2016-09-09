@@ -1,4 +1,15 @@
 import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {clickOperator} from '../actions/index'
+
+const operands = (tileNumbers, clickOperator) => (
+  tileNumbers.map(function(number, key){
+    return (
+      <button key={key} className="button">{number}</button>
+    )
+  })
+)
 
 class Calculator extends Component {
   render() {
@@ -8,65 +19,33 @@ class Calculator extends Component {
           <div className="hidden" >+10</div>
         </div>
         <div className="operands">
-          <div>
-            <div>
-              <button className="button">0</button>
-              <button className="button">9</button>
-              <button className="button">7</button>
-              <button className="button">0</button>
-              <button className="button">1</button>
-            </div>
-          </div>
-          <div>
-            <div>
-              <button className="button">1</button>
-              <button className="button">7</button>
-              <button className="button">8</button>
-              <button className="button">7</button>
-              <button className="button">6</button>
-            </div>
-          </div>
-          <div>
-            <div>
-              <button className="button">6</button>
-              <button className="button">6</button>
-              <button className="button">9</button>
-              <button className="button">4</button>
-              <button className="button">3</button>
-            </div>
-          </div>
-          <div>
-            <div>
-              <button className="button">3</button>
-              <button className="button">6</button>
-              <button className="button">2</button>
-              <button className="button">0</button>
-              <button className="button">4</button>
-            </div>
-          </div>
-          <div>
-            <div>
-              <button className="button">8</button>
-              <button className="button">7</button>
-              <button className="button">6</button>
-              <button className="button">9</button>
-              <button className="button">5</button>
-            </div>
-          </div>
+          {
+            operands(this.props.tileNumbers, this.props.clickOperator)
+          }
         </div>
         <div>
           <div className="operators">
-            <button className="button">+</button>
-            <button className="button">-</button>
-            <button className="button">*</button>
-            <button className="button">/</button>
-            <button className="button">^</button>
+            <button onClick={ () => this.props.clickOperator("+") } className="button">+</button>
+            <button onClick={ () => this.props.clickOperator("-") } className="button">-</button>
+            <button onClick={ () => this.props.clickOperator("*") } className="button">*</button>
+            <button onClick={ () => this.props.clickOperator("/") } className="button">/</button>
+            <button onClick={ () => this.props.clickOperator("^") } className="button">^</button>
           </div>
-          <button className="button green equals">=</button>
+          <button onClick={ () => this.props.clickOperator("=") } className="button green equals">=</button>
         </div>
       </div>
     )
   }
 }
 
-export default Calculator
+function mapStateToProps(state) {
+  return {
+    tileNumbers: state.gameData.tileNumbers
+  }
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({clickOperator: clickOperator}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Calculator)

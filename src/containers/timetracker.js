@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class TimeTracker extends Component {
 	render() {
@@ -8,4 +9,10 @@ class TimeTracker extends Component {
 	}
 }
 
-export default TimeTracker
+function mapStateToProps(state) {
+	return {
+		isPlaying: state.gameData.isPlaying
+	}
+}
+
+export default connect(mapStateToProps)(TimeTracker)
