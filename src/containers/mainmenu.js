@@ -24,5 +24,5 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
 	return bindActionCreators({clickPlay: clickPlay}, dispatch)
 }
-
+   
 export default connect(mapStateToProps, matchDispatchToProps)(MainMenu)

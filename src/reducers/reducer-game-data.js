@@ -1,10 +1,14 @@
+import checkUsedPatterns from './check-used-patterns'
+import checkEquation from './check-equation'
+
 const defaultGameData = {
 	isPlaying: false,
 	score: 0,
-	activeTiles: [],
+	clickedTiles: [],
 	tileNumbers: [],
 	equation: [],
-	finishedEquations: []
+	usedPatterns: [],
+	feedback: ""
 }
 
 const randomTileNumbers = () => {
@@ -16,14 +20,14 @@ const randomTileNumbers = () => {
 }
 
 export default function (state=defaultGameData, action) {
-	
+
 	switch(action.type) {
-		case "CLICK_PLAY": 
+		case "CLICK_PLAY":
 			if(state.isPlaying === true) {
 				return state
 			}
 			return Object.assign({}, state, {
-				isPlaying: true, 
+				isPlaying: true,
 				tileNumbers: randomTileNumbers()
 			})
 
@@ -35,14 +39,38 @@ export default function (state=defaultGameData, action) {
 				isPlaying: false,
 				activeTiles: [],
 				equation: [],
-				finishedEquations: []
+				usedPatterns: []
 			})
 
-		case "CLICK_OPERATOR": 
-			console.log(action.payload)
+		case "CLICK_OPERATOR":
+			// check if valid equation
+			  // end operation
+			  // give feedback
+			// check if repeat
+				// end operation
+				// give feedback
 			return state
 
-		default: 
+		case "CLICK_OPERAND":
+
+			// check to see if this is an adjacent tile
+			// check equation
+			// checkEquation(state.equation, action.operatorClicked)
+				// if wrong
+					// end operation
+					// give feedback
+			  // if pending
+			  	// update equation
+				// if correct
+				  // check if used pattern
+				  	// give feedback
+				  // add score
+						// give feedback
+				  // end operation
+
+			return state
+
+		default:
 			return state
 	}
 }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {clickOperator} from '../actions/index'
+import {clickOperator, clickOperand} from '../actions/index'
 
-const operands = (tileNumbers, clickOperator) => (
-  tileNumbers.map(function(number, key){
+const operands = (propsData) => (
+  propsData.tileNumbers.map(function(number, key){
     return (
-      <button key={key} className="button">{number}</button>
+      <button key={key} onClick={ () => propsData.clickOperand(number, key) } className="button">{number}</button>
     )
   })
 )
@@ -20,7 +20,7 @@ class Calculator extends Component {
         </div>
         <div className="operands">
           {
-            operands(this.props.tileNumbers, this.props.clickOperator)
+            operands(this.props)
           }
         </div>
         <div>
@@ -45,7 +45,10 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({clickOperator: clickOperator}, dispatch)
+  return bindActionCreators({
+    clickOperator: clickOperator,
+    clickOperand: clickOperand
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Calculator)

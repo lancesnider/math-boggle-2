@@ -14,7 +14,15 @@ export const gameOver = () => {
 
 export const clickOperator = (operatorClicked) => {
 	return {
-		type: 'CLICK_OPERATOR', 
-		payload: operatorClicked
+		type: 'CLICK_OPERATOR',
+		operatorClicked: operatorClicked
+	}
+}
+
+export const clickOperand = (operandClicked, tileClicked) => {
+	return {
+		type: 'CLICK_OPERAND',
+		operandClicked: operandClicked,
+		tileClicked: tileClicked
 	}
 }
