@@ -6,7 +6,14 @@ import {clickOperator, clickOperand} from '../actions/index'
 const operands = (propsData) => (
   propsData.tileNumbers.map(function(number, key){
     return (
-      <button key={key} onClick={ () => propsData.clickOperand(number, key) } className="button">{number}</button>
+      <button
+        key={key}
+        onClick={ () => propsData.clickOperand(number, key) }
+        className="button"
+        disabled={ propsData.clickedTiles.indexOf(key)>-1 ? true : false }
+      >
+        {number}
+      </button>
     )
   })
 )
@@ -40,7 +47,8 @@ class Calculator extends Component {
 
 function mapStateToProps(state) {
   return {
-    tileNumbers: state.gameData.tileNumbers
+    tileNumbers: state.gameData.tileNumbers,
+    clickedTiles: state.gameData.clickedTiles
   }
 }
 

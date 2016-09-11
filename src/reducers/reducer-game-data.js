@@ -1,5 +1,6 @@
+import randomTileNumbers from './random-tile-numbers'
 import checkUsedPatterns from './check-used-patterns'
-import checkEquation from './check-equation'
+import {checkEquation, checkAdjacentTile, checkEasyEquations} from './check-equation'
 
 const defaultGameData = {
 	isPlaying: false,
@@ -11,12 +12,25 @@ const defaultGameData = {
 	feedback: ""
 }
 
-const randomTileNumbers = () => {
-	var randomNumbersArray = []
-	for (var i = 0; i < 25; i++) {
-		randomNumbersArray[i] = Math.floor(Math.random() * 10)
+const equationOverGameData = {
+	clickedTiles: [],
+	equation: [],
+	feedback: ""
+}
+
+const gameOverGameData = {
+	isPlaying: false,
+	clickedTiles: [],
+	equation: [],
+	usedPatterns: [],
+	feedback: ""
+}
+
+const resetEquation = (stateChanges) => {
+	return {
+		...stateChanges,
+		...equationOverGameData
 	}
-	return randomNumbersArray
 }
 
 export default function (state=defaultGameData, action) {
@@ -53,14 +67,39 @@ export default function (state=defaultGameData, action) {
 
 		case "CLICK_OPERAND":
 
+			// Check that the tile clicked is adjacent to the last tile clicked
+			let newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
+			if( newClickedTiles === [] ) {
+				return resetEquation()
+			}
+
+			let easyEquationFeedback = checkEasyEquations(state.equation, action.operandClicked)
+			if( easyEquationFeedback !== "" ) {
+				return resetEquation(easyEquationFeedback)
+			}
+
+			let newEquation = [ ...state.equation, state.operandClicked ]
+
+
+
+
+			return Object.assign({}, state, {
+				clickedTiles: newClickedTiles
+			})
 			// check to see if this is an adjacent tile
-			// check equation
-			// checkEquation(state.equation, action.operatorClicked)
+				// if not
+					// end operation
+				// if so, add to clicked tiles array
+
+			// check if multiply/divide by zero
+			// if there's an = sign
+			// checkEquation(state.equation, action.operandClicked)
 				// if wrong
 					// end operation
 					// give feedback
 			  // if pending
 			  	// update equation
+			  	// update clicked tiles
 				// if correct
 				  // check if used pattern
 				  	// give feedback
@@ -68,7 +107,7 @@ export default function (state=defaultGameData, action) {
 						// give feedback
 				  // end operation
 
-			return state
+			// return state
 
 		default:
 			return state
