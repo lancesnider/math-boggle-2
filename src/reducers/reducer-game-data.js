@@ -14,23 +14,14 @@ const defaultGameData = {
 
 const equationOverGameData = {
 	clickedTiles: [],
-	equation: [],
-	feedback: ""
+	equation: []
 }
 
 const gameOverGameData = {
 	isPlaying: false,
 	clickedTiles: [],
 	equation: [],
-	usedPatterns: [],
-	feedback: ""
-}
-
-const resetEquation = (stateChanges) => {
-	return {
-		...stateChanges,
-		...equationOverGameData
-	}
+	usedPatterns: []
 }
 
 export default function (state=defaultGameData, action) {
@@ -57,6 +48,11 @@ export default function (state=defaultGameData, action) {
 			})
 
 		case "CLICK_OPERATOR":
+
+			let equationWithNewOperand = [ ...state.equation, action.operatorClicked ]
+			return Object.assign({}, state, {
+				equation: equationWithNewOperand
+			})
 			// check if valid equation
 			  // end operation
 			  // give feedback
@@ -70,21 +66,23 @@ export default function (state=defaultGameData, action) {
 			// Check that the tile clicked is adjacent to the last tile clicked
 			let newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
 			if( newClickedTiles === [] ) {
-				return resetEquation()
+				return Object.assign({}, state, equationOverGameData)
 			}
 
+			// Don't allow easy equations, like multiplying by 0
 			let easyEquationFeedback = checkEasyEquations(state.equation, action.operandClicked)
 			if( easyEquationFeedback !== "" ) {
-				return resetEquation(easyEquationFeedback)
+				return Object.assign({}, state, {
+					...equationOverGameData,
+					feedback: easyEquationFeedback
+				})
 			}
 
-			let newEquation = [ ...state.equation, state.operandClicked ]
-
-
-
+			let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
 
 			return Object.assign({}, state, {
-				clickedTiles: newClickedTiles
+				clickedTiles: newClickedTiles,
+				equation: equationWithNewOperator
 			})
 			// check to see if this is an adjacent tile
 				// if not

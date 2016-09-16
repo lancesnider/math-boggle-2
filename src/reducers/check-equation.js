@@ -41,22 +41,19 @@ export const checkAdjacentTile = (clickedTiles, newClickedTile) =>  {
 }
 
 export const checkEasyEquations = (equation, newOperand) => {
-
   if(newOperand === 0){
-
-    //let lastEquationItem = equation[equation.length - 1]
     switch(equation[equation.length - 1]) {
       case "*":
         return "Can't multiply by 0"
-
+        break
+      case "/":
+        return "Can't divide by 0"
+        break
+      case "^":
+        return "Can't factor by 0"
+      default:
+        return ""
     }
-
-    //if(lastEquationItem === "*")
-    //if( newOperand === 0 && !Number.isInteger(equation[equation.length - 1])) {
-
-    //}
   }
-
   return ""
-
 }
