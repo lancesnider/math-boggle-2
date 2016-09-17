@@ -7,11 +7,21 @@ const checkEquation = (equation) => {
   }
 
   let equationWithNumbers = convertArrayToNumbers(equation.slice(0, equalsIndex))
-  let correctAnswer = runEquation(equationWithNumbers)
-  // TO DO - check if the answer given is correct or at least on its way
-  let answerArray = equation.slice(equalsIndex + 1)
+  let actualAnswer = runEquation(equationWithNumbers)
+  let clickedAnswer = equation.slice(equalsIndex + 1)
+  return checkAnwers(clickedAnswer, actualAnswer)
+}
 
-  return "Incorrect Answer"
+const checkAnwers = (clickedAnswer, actualAnswer) => {
+  if(parseInt(clickedAnswer.join('')) === actualAnswer){
+    return "correct"
+  }
+  for (var i = 0; i < clickedAnswer.length; i++) {
+    if(clickedAnswer[i] !== parseInt(actualAnswer.toString()[i])){
+      return "Incorrect"
+    }
+  }
+  return "pending"
 }
 
 let operationOrder = ["^", "/", "*", "+", "-"]

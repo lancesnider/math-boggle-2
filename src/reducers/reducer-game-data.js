@@ -82,20 +82,18 @@ export default function (state=defaultGameData, action) {
 			}
 
 			let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
+			let checkedEquation = checkEquation(equationWithNewOperator)
 
-			var checkedEquation = checkEquation(equationWithNewOperator)
-			console.log(checkedEquation)
 			if(checkedEquation == "pending"){
 				return Object.assign({}, state, {
 					clickedTiles: newClickedTiles,
 					equation: equationWithNewOperator
 				})
 			}else if(checkedEquation == "correct"){
-				var scoreData = addToScore(state.score, equation)
+				let scoreData = addToScore(state.score, state.equation)
 				return Object.assign({}, state, {
 					...equationOverGameData,
-					...scoreData,
-					equation: equationWithNewOperator
+					...scoreData
 				})
 			}
 
