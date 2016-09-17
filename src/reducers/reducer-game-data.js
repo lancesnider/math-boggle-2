@@ -1,6 +1,9 @@
 import randomTileNumbers from './random-tile-numbers'
 import checkUsedPatterns from './check-used-patterns'
-import {checkEquation, checkAdjacentTile, checkEasyEquations} from './check-equation'
+import addToScore from './add-to-score'
+import checkAdjacentTile from './check-adjacent-tile'
+import checkEquation from './check-equation'
+import checkEasyEquations from './check-easy-equations'
 
 const defaultGameData = {
 	isPlaying: false,
@@ -80,32 +83,26 @@ export default function (state=defaultGameData, action) {
 
 			let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
 
+			var checkedEquation = checkEquation(equationWithNewOperator)
+			console.log(checkedEquation)
+			if(checkedEquation == "pending"){
+				return Object.assign({}, state, {
+					clickedTiles: newClickedTiles,
+					equation: equationWithNewOperator
+				})
+			}else if(checkedEquation == "correct"){
+				var scoreData = addToScore(state.score, equation)
+				return Object.assign({}, state, {
+					...equationOverGameData,
+					...scoreData,
+					equation: equationWithNewOperator
+				})
+			}
+
 			return Object.assign({}, state, {
-				clickedTiles: newClickedTiles,
-				equation: equationWithNewOperator
+				...equationOverGameData,
+				feedback: checkedEquation
 			})
-			// check to see if this is an adjacent tile
-				// if not
-					// end operation
-				// if so, add to clicked tiles array
-
-			// check if multiply/divide by zero
-			// if there's an = sign
-			// checkEquation(state.equation, action.operandClicked)
-				// if wrong
-					// end operation
-					// give feedback
-			  // if pending
-			  	// update equation
-			  	// update clicked tiles
-				// if correct
-				  // check if used pattern
-				  	// give feedback
-				  // add score
-						// give feedback
-				  // end operation
-
-			// return state
 
 		default:
 			return state

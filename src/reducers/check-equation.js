@@ -1,59 +1,81 @@
-/*
-  The answer to an equation can be:
-    - pending (not right or wrong yet)
-    - correct
-    - incorrect
-      - Wrong answer
-      - Don't [operator] by 0
-      - Invalid operation
-*/
 
-export const checkEquation = (equation, newItem) => {
+const checkEquation = (equation) => {
 
-  return {
-    equation: [...equation, newItem]
+  let equalsIndex = equation.indexOf("=")
+  if(equalsIndex === -1){
+    return "pending"
   }
+
+  let equationWithNumbers = convertArrayToNumbers(equation.slice(0, equalsIndex))
+  let correctAnswer = runEquation(equationWithNumbers)
+  // TO DO - check if the answer given is correct or at least on its way
+  let answerArray = equation.slice(equalsIndex + 1)
+
+  return "Incorrect Answer"
 }
 
-export const checkAdjacentTile = (clickedTiles, newClickedTile) =>  {
+let operationOrder = ["^", "/", "*", "+", "-"]
 
-  // If this is the first tile clicked, just return the new tile
-  let clickedTilesLength = clickedTiles.length
-  if(clickedTilesLength === 0){
-    return [newClickedTile]
+const runEquation = (equation) => {
+
+  var newEquation = []
+  for(let operator of operationOrder){
+    newEquation = runOperationsOfType(equation, operator)
+    if(newEquation.length === 1)break
   }
-
-  // Figure out column and row numbers based on tile number (tile 20 = col 0, row 4)
-  let lastClickedTile = clickedTiles[clickedTilesLength - 1]
-  let lastColumnNum = lastClickedTile % 5
-  let lastRowNum = Math.floor(lastClickedTile/5)
-  let newColumnNum = newClickedTile % 5
-  let newRowNum = Math.floor(newClickedTile/5)
-
-  // Check if the new and previous tile are adjacent
-  if(Math.abs(lastColumnNum - newColumnNum) < 2 && Math.abs(lastRowNum - newRowNum) < 2) {
-    return [...clickedTiles, newClickedTile]
-  }
-
-  // If they're not, return an empty array
-  return []
+  return newEquation[0]
 
 }
 
-export const checkEasyEquations = (equation, newOperand) => {
-  if(newOperand === 0){
-    switch(equation[equation.length - 1]) {
-      case "*":
-        return "Can't multiply by 0"
-        break
-      case "/":
-        return "Can't divide by 0"
-        break
-      case "^":
-        return "Can't factor by 0"
-      default:
-        return ""
+const runOperationsOfType = (equation, operator) => {
+  let operatorIndex = equation.indexOf(operator)
+  if(operatorIndex === -1){
+    return equation
+  }
+
+  var operationResult
+
+  let firstNum = equation[operatorIndex - 1 ]
+  let secondNum = equation[operatorIndex + 1 ]
+
+  if(operator === "^"){
+    operationResult = Math.pow(firstNum, secondNum)
+  }else if(operator === "/"){
+    operationResult = firstNum / secondNum
+  }else if(operator === "*"){
+    operationResult = firstNum * secondNum
+  }else if(operator === "+"){
+    operationResult = firstNum + secondNum
+  }else if(operator === "-"){
+    operationResult = firstNum - secondNum
+  }
+
+
+  equation.splice(operatorIndex-1, 3, operationResult)
+  if(equation.indexOf(operator) > -1){
+    return (runOperationsOfType(equation, operator))
+  }
+
+  return equation
+}
+
+const convertArrayToNumbers = (equation) => {
+
+  var lastOperatorIndex = -1
+  var newEquation = []
+
+  for (var i = 0; i < equation.length; i++) {
+    if(!Number.isInteger(equation[i])){
+      let fullNumber = parseInt(equation.slice(lastOperatorIndex + 1, i).join(''))
+      newEquation.push(fullNumber, equation[i])
+      lastOperatorIndex = i
+    }else if(i == equation.length - 1){
+      let fullNumber = parseInt(equation.slice(lastOperatorIndex + 1).join(''))
+      newEquation.push(fullNumber)
     }
   }
-  return ""
+
+  return newEquation
 }
+
+export default checkEquation
