@@ -102,6 +102,11 @@ export default function (state=defaultGameData, action) {
 				feedback: checkedEquation
 			})
 
+		case "NEW_FEEDBACK":
+			return Object.assign({}, state, {
+				feedback: action.newFeedback
+			})
+
 		default:
 			return state
 	}

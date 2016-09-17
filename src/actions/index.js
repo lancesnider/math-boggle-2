@@ -26,3 +26,10 @@ export const clickOperand = (operandClicked, tileClicked) => {
 		tileClicked: tileClicked
 	}
 }
+
+export const updateFeedback = (newFeedback) => {
+	return {
+		type: 'NEW_FEEDBACK',
+		newFeedback: newFeedback
+	}
+}
