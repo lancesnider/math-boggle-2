@@ -1,5 +1,5 @@
 import randomTileNumbers from './random-tile-numbers'
-import checkUsedPatterns from './check-used-patterns'
+// import checkUsedPatterns from './check-used-patterns'
 import addToScore from './add-to-score'
 import checkAdjacentTile from './check-adjacent-tile'
 import checkEquation from './check-equation'
@@ -20,12 +20,12 @@ const equationOverGameData = {
 	equation: []
 }
 
-const gameOverGameData = {
-	isPlaying: false,
-	clickedTiles: [],
-	equation: [],
-	usedPatterns: []
-}
+// const gameOverGameData = {
+// 	isPlaying: false,
+// 	clickedTiles: [],
+// 	equation: [],
+// 	usedPatterns: []
+// }
 
 export default function (state=defaultGameData, action) {
 
@@ -62,7 +62,6 @@ export default function (state=defaultGameData, action) {
 			// check if repeat
 				// end operation
 				// give feedback
-			return state
 
 		case "CLICK_OPERAND":
 
@@ -84,12 +83,12 @@ export default function (state=defaultGameData, action) {
 			let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
 			let checkedEquation = checkEquation(equationWithNewOperator)
 
-			if(checkedEquation == "pending"){
+			if(checkedEquation === "pending"){
 				return Object.assign({}, state, {
 					clickedTiles: newClickedTiles,
 					equation: equationWithNewOperator
 				})
-			}else if(checkedEquation == "correct"){
+			}else if(checkedEquation === "correct"){
 				let scoreData = addToScore(state.score, state.equation)
 				return Object.assign({}, state, {
 					...equationOverGameData,

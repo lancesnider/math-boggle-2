@@ -3,12 +3,12 @@ const checkEasyEquations = (equation, newOperand) => {
     switch(equation[equation.length - 1]) {
       case "*":
         return "Can't multiply by 0"
-        break
       case "/":
         return "Can't divide by 0"
-        break
       case "^":
         return "Can't factor by 0"
+      default:
+        return ""
     }
   }
   return ""

@@ -1,13 +1,5 @@
-import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
-class TimeTracker extends Component {
-	render() {
-		return (
-			<div>Time Left: 157</div>
-		)
-	}
-}
+import Timetracker from '../components/Timetracker'
 
 function mapStateToProps(state) {
 	return {
@@ -15,4 +7,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(TimeTracker)
+export default connect(mapStateToProps)(Timetracker)

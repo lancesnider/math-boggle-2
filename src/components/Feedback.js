@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {updateFeedback} from '../actions/index'
-import feedback from '../containers/feedback'
 
 class Feedback extends Component {
 

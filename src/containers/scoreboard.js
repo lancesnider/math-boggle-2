@@ -1,13 +1,5 @@
-import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
-class Scoreboard extends Component {
-	render() {
-		return (
-			<div>Score: {this.props.score}</div>
-		)
-	}
-}
+import Scoreboard from '../components/Scoreboard'
 
 function mapStateToProps(state) {
 	return {
