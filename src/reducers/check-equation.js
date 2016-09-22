@@ -1,3 +1,5 @@
+import T from 'i18n-react'
+
 let operationOrder = ["^", "/", "*", "+", "-"]
 
 const runOperationsOfType = (equation, operator) => {
@@ -77,17 +79,28 @@ const convertArrayToNumbers = (equation) => {
 }
 
 const checkAnwers = (clickedAnswer, actualAnswer) => {
-  // These logs are handy for when one of your tests breaks
-    // console.log("clicked", clickedAnswer, "actual", actualAnswer)
-    // console.log("---------------------------------")
+
   if(parseInt(clickedAnswer.join(''), 10) === actualAnswer){
     return "correct"
   }
+
+  // This is for negative numbers when they've only typed "-", which isn't a number
+    // Technically this should never happen because `checkAnswers` only runs when
+    // an operand is clicked, but better safe than sorry. :)
+  if(
+    clickedAnswer.length === 1 &&
+    clickedAnswer[0] === "-" &&
+    actualAnswer < 0
+  ){
+    return "pending"
+  }
+
   for (var i = 0; i < clickedAnswer.length; i++) {
     if(clickedAnswer[i] !== parseInt(actualAnswer.toString()[i], 10)){
-      return "Incorrect"
+      return T.texts.feedback.incorrect
     }
   }
+
   return "pending"
 }
 
@@ -102,6 +115,7 @@ const checkEquation = (equation) => {
   let equationWithNumbers = convertArrayToNumbers(equation.slice(0, equalsIndex))
   let actualAnswer = runEquation(equationWithNumbers)
   let clickedAnswer = equation.slice(equalsIndex + 1)
+
   // Returns "correct", "pending", or an error
   return checkAnwers(clickedAnswer, actualAnswer)
 }

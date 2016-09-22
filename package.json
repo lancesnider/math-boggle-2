@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.4.1",
+    "i18n-react": "^0.3.0-ts1",
     "react-addons-test-utils": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-scripts": "0.4.3",

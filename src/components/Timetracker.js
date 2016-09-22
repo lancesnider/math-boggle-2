@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
+import T from 'i18n-react'
 
 class Timetracker extends Component {
   render() {
     return (
-      <div>Time Left: 157</div>
+      <div><T.span text="menu.timeLeft" />157</div>
     )
   }
 }
