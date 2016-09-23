@@ -4,6 +4,7 @@ import addToScore from './add-to-score'
 import checkAdjacentTile from './check-adjacent-tile'
 import checkEquation from './check-equation'
 import checkEasyEquations from './check-easy-equations'
+import checkOperators from './check-operators'
 
 const defaultGameData = {
 	isPlaying: false,
@@ -52,16 +53,19 @@ export default function (state=defaultGameData, action) {
 
 		case "CLICK_OPERATOR":
 
+			// check if it's a valid equation (4** = false)
 			let equationWithNewOperand = [ ...state.equation, action.operatorClicked ]
+			if(checkOperators(equationWithNewOperand) === false){
+				return Object.assign({}, state, {
+					...equationOverGameData
+				})
+			}
+
+			// TO DO - Check if this is a repeat
+
 			return Object.assign({}, state, {
 				equation: equationWithNewOperand
 			})
-			// check if valid equation
-			  // end operation
-			  // give feedback
-			// check if repeat
-				// end operation
-				// give feedback
 
 		case "CLICK_OPERAND":
 
