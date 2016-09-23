@@ -42,5 +42,8 @@ it('checks operators correctly', () => {
   expect(checkOperators(equations[2].equation)).toEqual(equations[2].result)
   expect(checkOperators(equations[3].equation)).toEqual(equations[3].result)
   expect(checkOperators(equations[4].equation)).toEqual(equations[4].result)
+  expect(checkOperators(equations[5].equation)).toEqual(equations[5].result)
+  expect(checkOperators(equations[6].equation)).toEqual(equations[6].result)
+  expect(checkOperators(equations[7].equation)).toEqual(equations[7].result)
 
 })
