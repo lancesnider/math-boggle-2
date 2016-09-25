@@ -1,4 +1,6 @@
 const simplifyEquationNumbers = (equation, isIntArray) => {
+  if(isIntArray.length === 1 && isIntArray[0] === true)
+    return equation
 
   var newEquation = []
   var lastOperatorIndex = -1
@@ -15,15 +17,14 @@ const simplifyEquationNumbers = (equation, isIntArray) => {
       lastOperatorIndex = i
 
     }else if(i === isIntArray.length -1){
-
       let newNumberLength = i - lastOperatorIndex
       if(newNumberLength === 1 && equation[i] === "-"){
         newEquation.push("-")
-      }
-
-      if(lastOperatorIndex !== i - 1){
-        let fullNumber = parseInt(equation.slice(lastOperatorIndex + 1).join(''), 10)
+      }else if(lastOperatorIndex !== i - 1){
+        var fullNumber = parseInt(equation.slice(lastOperatorIndex + 1).join(''), 10)
         newEquation.push(fullNumber)
+      }else if(newNumberLength === 1){
+        newEquation.push(equation[i])
       }
     }
 
