@@ -32,7 +32,7 @@ let tests = [
   // Check for valid equation
   {
     gameData: {
-      clickedTiles: []
+       equation: []
     },
     action: {
       type: 'CLICK_CALCULATOR',
