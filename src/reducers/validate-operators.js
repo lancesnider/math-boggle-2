@@ -5,7 +5,7 @@ const validateOperators = (isIntArray) => {
   }
 
   for (var i = 0; i < isIntArray.length; i++) {
-    if(i !== 0 && isIntArray[i] === false && isIntArray[i-1] === false)
+    if(i !== 0 && isIntArray[i] === false && isIntArray[i - 1] === false)
       return false
   }
 

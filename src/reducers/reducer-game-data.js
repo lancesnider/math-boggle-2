@@ -1,7 +1,7 @@
 import randomTileNumbers from './random-tile-numbers'
 // import checkUsedPatterns from './check-used-patterns'
-//import addToScore from './add-to-score'
-import checkAdjacentTile from './check-adjacent-tile'
+// //import addToScore from './add-to-score'
+// import checkAdjacentTile from './check-adjacent-tile'
 // import checkEquation from './check-equation'
 // import checkEasyEquations from './check-easy-equations'
 // import checkOperators from './check-operators'
@@ -54,23 +54,27 @@ export default function (state=defaultGameData, action) {
 
 		case "CLICK_CALCULATOR":
 
-			var newClickedTiles = state.clickedTiles
-			if(action.tileClicked)
-				newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
+			// var newClickedTiles = state.clickedTiles
+			// if(action.tileClicked)
+			// 	newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
 
-			// Check that the tile clicked is adjacent to the last tile clicked
-			if(action.tileClicked && newClickedTiles.length === 0) {
-				return Object.assign({}, state, equationOverGameData)
-			}
+			// // Check that the tile clicked is adjacent to the last tile clicked
+			// if(action.tileClicked && newClickedTiles.length === 0) {
+			// 	return Object.assign({}, state, equationOverGameData)
+			// }
 
 			let equationWithNewItem = [ ...state.equation, action.itemClicked ]
-			let validatedEquation = validateEquation(equationWithNewItem, state)
+			return validateEquation(equationWithNewItem, state, action.tileClicked)
 
-			return Object.assign({}, validatedEquation.state,
-				{
-					clickedTiles: newClickedTiles
-				}
-			)
+			// let newEquation = Object.assign({}, validatedEquation,
+			// 	{
+			// 		clickedTiles: newClickedTiles
+			// 	}
+			// )
+
+			// console.log(newEquation.clickedTiles)
+
+			// return newEquation
 
 
 // console.log("dafsd")

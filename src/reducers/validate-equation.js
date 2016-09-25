@@ -3,14 +3,21 @@ import {defaultGameData, equationOverGameData}  from './reducer-game-data.js'
 import findIntegersInEquation from './find-integers-in-equation'
 import simplifyEquationNumbers from './simplify-equation-numbers'
 import validateOperators from './validate-operators'
+import checkAdjacentTile from './check-adjacent-tile'
 
-const validateEquation = (equation, state) => {
+const validateEquation = (equation, state, tileClicked = -1) => {
 
+  // If if clicked tiles are adjacent
   // Check valid operation
   // Check if `=`
     // Check if easy
     // Check if repeat
     // Check if Correct, Pending, or Invalid
+  var newClickedTiles = state.clickedTiles
+  if(tileClicked > -1){
+    newClickedTiles = checkAdjacentTile(state.clickedTiles, tileClicked)
+  }
+
 
   let isIntArray = findIntegersInEquation(equation)
   let validOperators = validateOperators(isIntArray)
@@ -20,15 +27,11 @@ const validateEquation = (equation, state) => {
 
   let equationWithNumbers = simplifyEquationNumbers(equation, isIntArray)
 
-
-  let newState = Object.assign({}, state, {
-    equation: equation
+  return Object.assign({}, state, {
+    equation: equation,
+    clickedTiles: newClickedTiles
   })
 
-  return {
-    status: "pending",
-    state: newState
-  }
 }
 
 
