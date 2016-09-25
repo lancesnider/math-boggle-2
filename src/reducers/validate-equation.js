@@ -2,6 +2,7 @@
 import {defaultGameData, equationOverGameData}  from './reducer-game-data.js'
 import findIntegersInEquation from './find-integers-in-equation'
 import simplifyEquationNumbers from './simplify-equation-numbers'
+import validateOperators from './validate-operators'
 
 const validateEquation = (equation, state) => {
 
@@ -12,6 +13,11 @@ const validateEquation = (equation, state) => {
     // Check if Correct, Pending, or Invalid
 
   let isIntArray = findIntegersInEquation(equation)
+  let validOperators = validateOperators(isIntArray)
+  if(!validOperators){
+    return Object.assign({}, state, equationOverGameData)
+  }
+
   let equationWithNumbers = simplifyEquationNumbers(equation, isIntArray)
 
 

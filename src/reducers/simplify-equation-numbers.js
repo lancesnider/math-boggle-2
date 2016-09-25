@@ -3,7 +3,6 @@ const simplifyEquationNumbers = (equation, isIntArray) => {
   var newEquation = []
   var lastOperatorIndex = -1
   for (var i = 0; i < isIntArray.length; i++) {
-      console.log(isIntArray[i])
 
     if(isIntArray[i] === false){
 
