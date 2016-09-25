@@ -16,6 +16,9 @@ const validateEquation = (equation, state, tileClicked = -1) => {
   var newClickedTiles = state.clickedTiles
   if(tileClicked > -1){
     newClickedTiles = checkAdjacentTile(state.clickedTiles, tileClicked)
+    if(newClickedTiles.length === 0) {
+     return Object.assign({}, state, equationOverGameData)
+    }
   }
 
 
