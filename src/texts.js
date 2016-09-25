@@ -8,9 +8,7 @@ T.setTexts({
   },
   feedback: {
     incorrect: "Incorrect",
-    multiplyByZero: "Can't multiply by 0",
-    divideByZero: "Can't divide by 0",
-    factorByZero: "Can't factor by 0",
+    zero: "x",
     tooShort: "Too short"
   }
 })

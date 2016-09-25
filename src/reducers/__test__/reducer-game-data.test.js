@@ -95,8 +95,61 @@ let tests = [
       itemClicked: 2
     },
     expectedGameData: equationOverGameData
+  },
+  // Easy equations
+  {
+    gameData: {},
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 0
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.zero
+    }
+  },
+  {
+    gameData: {
+      equation: [5, "^"]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 0
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.zero
+    }
+  },
+  {
+    gameData: {
+      equation: [0, "^"]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 5
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.zero
+    }
+  },
+  {
+    gameData: {
+      equation: [3,3]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "="
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.tooShort
+    }
   }
 ]
+
+//T.texts.feedback.zero
 
 const getUpdatedExpectedData = (test) => {
   let startingameData = Object.assign({}, defaultGameData, test.gameData)

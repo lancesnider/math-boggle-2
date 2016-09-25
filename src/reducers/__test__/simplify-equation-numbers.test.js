@@ -11,4 +11,5 @@ it('correctly identifies integers in the equations', () => {
   expect(simplifyEquationNumbers([2,"-","-","*"], [true,false,false,false])).toEqual([2, "-", "-", "*"])
   expect(simplifyEquationNumbers([2, "=", "-"], [true,false,true])).toEqual([2,"=", "-"])
   expect(simplifyEquationNumbers([2, 2, "*", "-", 2], [true,true,false,true,true])).toEqual([22,"*", -2])
+  expect(simplifyEquationNumbers([0], [true])).toEqual([0])
 })

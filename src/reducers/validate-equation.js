@@ -32,9 +32,13 @@ const validateEquation = (equation, state, tileClicked = -1) => {
   }
 
   let equationWithNumbers = simplifyEquationNumbers(equation, isIntArray)
-
   let easyFeedback = checkEasyEquations(equationWithNumbers, isIntArray)
-  console.log(easyFeedback)
+  if(easyFeedback !== ""){
+    return Object.assign({}, state, {
+      ...equationOverGameData,
+      feedback: easyFeedback
+    })
+  }
 
   return Object.assign({}, state, {
     equation: equation,
