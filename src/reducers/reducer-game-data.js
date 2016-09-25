@@ -1,12 +1,13 @@
 import randomTileNumbers from './random-tile-numbers'
 // import checkUsedPatterns from './check-used-patterns'
-import addToScore from './add-to-score'
+//import addToScore from './add-to-score'
 import checkAdjacentTile from './check-adjacent-tile'
-import checkEquation from './check-equation'
-import checkEasyEquations from './check-easy-equations'
-import checkOperators from './check-operators'
+// import checkEquation from './check-equation'
+// import checkEasyEquations from './check-easy-equations'
+// import checkOperators from './check-operators'
+import validateEquation from './validate-equation'
 
-const defaultGameData = {
+export const defaultGameData = {
 	isPlaying: false,
 	score: 0,
 	clickedTiles: [],
@@ -16,7 +17,7 @@ const defaultGameData = {
 	feedback: ""
 }
 
-const equationOverGameData = {
+export const equationOverGameData = {
 	clickedTiles: [],
 	equation: []
 }
@@ -51,59 +52,92 @@ export default function (state=defaultGameData, action) {
 				usedPatterns: []
 			})
 
-		case "CLICK_OPERATOR":
+		case "CLICK_CALCULATOR":
 
-			// check if it's a valid equation (4** = false)
-			let equationWithNewOperand = [ ...state.equation, action.operatorClicked ]
-			if(checkOperators(equationWithNewOperand) === false){
-				return Object.assign({}, state, {
-					...equationOverGameData
-				})
-			}
-
-			// TO DO - Check if this is a repeat
-
-			return Object.assign({}, state, {
-				equation: equationWithNewOperand
-			})
-
-		case "CLICK_OPERAND":
+			var newClickedTiles = state.clickedTiles
+			if(action.tileClicked)
+				newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
 
 			// Check that the tile clicked is adjacent to the last tile clicked
-			let newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
-			if( newClickedTiles === [] ) {
+			if(action.tileClicked && newClickedTiles.length === 0) {
 				return Object.assign({}, state, equationOverGameData)
 			}
 
-			// Don't allow easy equations, like multiplying by 0
-			let easyEquationFeedback = checkEasyEquations(state.equation, action.operandClicked)
-			if( easyEquationFeedback !== "" ) {
-				return Object.assign({}, state, {
-					...equationOverGameData,
-					feedback: easyEquationFeedback
-				})
-			}
+			let equationWithNewItem = [ ...state.equation, action.itemClicked ]
+			let validatedEquation = validateEquation(equationWithNewItem, state)
 
-			let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
-			let checkedEquation = checkEquation(equationWithNewOperator)
+			return Object.assign({}, validatedEquation.state,
+				{
+					clickedTiles: newClickedTiles
+				}
+			)
 
-			if(checkedEquation === "pending"){
-				return Object.assign({}, state, {
-					clickedTiles: newClickedTiles,
-					equation: equationWithNewOperator
-				})
-			}else if(checkedEquation === "correct"){
-				let scoreData = addToScore(state.score, state.equation)
-				return Object.assign({}, state, {
-					...equationOverGameData,
-					...scoreData
-				})
-			}
 
-			return Object.assign({}, state, {
-				...equationOverGameData,
-				feedback: checkedEquation
-			})
+// console.log("dafsd")
+
+
+
+
+
+			// "Pending"
+			// return Object.assign({}, state, {
+			// 	clickedTiles: newClickedTiles,
+			// 	equation: equationWithNewItem
+			// })
+
+		// case "CLICK_OPERATOR":
+
+			// check if it's a valid equation (4** = false)
+			// let equationWithNewOperand = [ ...state.equation, action.operatorClicked ]
+			// if(checkOperators(equationWithNewOperand) === false){
+			// 	return Object.assign({}, state, {
+			// 		...equationOverGameData
+			// 	})
+			// }
+
+			// // TO DO - Check if this is a repeat
+
+			// return Object.assign({}, state, {
+			// 	equation: equationWithNewOperand
+			// })
+
+		// case "CLICK_OPERAND":
+
+			// Check that the tile clicked is adjacent to the last tile clicked
+			// let newClickedTiles = checkAdjacentTile(state.clickedTiles, action.tileClicked)
+			// if( newClickedTiles === [] ) {
+			// 	return Object.assign({}, state, equationOverGameData)
+			// }
+
+			// // Don't allow easy equations, like multiplying by 0
+			// let easyEquationFeedback = checkEasyEquations(state.equation, action.operandClicked)
+			// if( easyEquationFeedback !== "" ) {
+			// 	return Object.assign({}, state, {
+			// 		...equationOverGameData,
+			// 		feedback: easyEquationFeedback
+			// 	})
+			// }
+
+			// let equationWithNewOperator = [ ...state.equation, action.operandClicked ]
+			// let checkedEquation = checkEquation(equationWithNewOperator)
+
+			// if(checkedEquation === "pending"){
+			// 	return Object.assign({}, state, {
+			// 		clickedTiles: newClickedTiles,
+			// 		equation: equationWithNewOperator
+			// 	})
+			// }else if(checkedEquation === "correct"){
+			// 	let scoreData = addToScore(state.score, state.equation)
+			// 	return Object.assign({}, state, {
+			// 		...equationOverGameData,
+			// 		...scoreData
+			// 	})
+			// }
+
+			// return Object.assign({}, state, {
+			// 	...equationOverGameData,
+			// 	feedback: checkedEquation
+			// })
 
 		case "NEW_FEEDBACK":
 			return Object.assign({}, state, {
