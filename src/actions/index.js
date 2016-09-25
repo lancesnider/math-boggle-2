@@ -14,15 +14,15 @@ export const gameOver = () => {
 
 export const clickOperator = (operatorClicked) => {
 	return {
-		type: 'CLICK_OPERATOR',
-		operatorClicked: operatorClicked
+		type: 'CLICK_CALCULATOR',
+		itemClicked: operatorClicked
 	}
 }
 
 export const clickOperand = (operandClicked, tileClicked) => {
 	return {
-		type: 'CLICK_OPERAND',
-		operandClicked: operandClicked,
+		type: 'CLICK_CALCULATOR',
+		itemClicked: operandClicked,
 		tileClicked: tileClicked
 	}
 }
