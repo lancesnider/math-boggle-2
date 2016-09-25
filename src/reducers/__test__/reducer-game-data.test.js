@@ -32,11 +32,67 @@ let tests = [
   // Check for valid equation
   {
     gameData: {
+       equation: [2, "-", 5, "="]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "-"
+    },
+    expectedGameData: {
+      equation: [2, "-", 5, "=", "-"]
+    }
+  },
+  {
+    gameData: {
+       equation: []
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "-"
+    },
+    expectedGameData: {
+      equation: ["-"]
+    }
+  },
+  {
+    gameData: {
+       equation: [2, "*", "-", 2]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "*"
+    },
+    expectedGameData: {
+      equation: [2, "*", "-", 2, "*"]
+    }
+  },
+  {
+    gameData: {
        equation: []
     },
     action: {
       type: 'CLICK_CALCULATOR',
       itemClicked: "*"
+    },
+    expectedGameData: equationOverGameData
+  },
+  {
+    gameData: {
+       equation: [5, "-"]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "*"
+    },
+    expectedGameData: equationOverGameData
+  },
+  {
+    gameData: {
+       equation: [5, "-", "*"]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 2
     },
     expectedGameData: equationOverGameData
   }
