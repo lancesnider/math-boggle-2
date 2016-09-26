@@ -15,5 +15,4 @@ it('checks for the correct answer', () => {
   expect(checkEquation([7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", -1])).toEqual("pending")
   expect(checkEquation([7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", 2])).toEqual(T.texts.feedback.incorrect)
   expect(checkEquation([7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", -2])).toEqual(T.texts.feedback.incorrect)
-
 })

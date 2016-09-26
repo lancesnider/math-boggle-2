@@ -43,7 +43,6 @@ const validateEquation = (equation, state, tileClicked = -1) => {
   }
 
   let equationFeedback = checkEquation(equationWithNumbers)
-  console.log(equationWithNumbers)
   if(equationFeedback === "pending"){
     return Object.assign({}, state, {
       equation: equation,
