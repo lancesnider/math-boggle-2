@@ -1,6 +1,6 @@
 import T from 'i18n-react'
 
-let operationOrder = ["^", "/", "*", "+", "-"]
+let operationOrder = ["^", "/", "*", "+-"]
 
 const runOperationsOfType = (equation, operator) => {
   // This runs through the equation based on the order of operations until you have a
@@ -11,7 +11,25 @@ const runOperationsOfType = (equation, operator) => {
     [5, "+", 1]                          // Replaces `4, "/", 4` with 1
     [6]                                  // Replaces `5, "+", 1` with 6, which the your answer
   */
-  let operatorIndex = equation.indexOf(operator)
+  var operatorIndex
+  var operatorActual = operator
+
+  if(operator === "+-"){
+    for (var i = 0; i < equation.length; i++) {
+      if(equation[i] === "+"){
+        operatorActual = "+"
+        break
+      }else if(equation[i] === "-"){
+        operatorActual = "-"
+        break
+      }
+    }
+  }
+
+
+  operatorIndex = equation.indexOf(operatorActual)
+
+
   // If there are no operators left, just return the answer
   if(operatorIndex === -1){
     return equation
@@ -20,21 +38,21 @@ const runOperationsOfType = (equation, operator) => {
   let firstNum = equation[operatorIndex - 1 ]
   let secondNum = equation[operatorIndex + 1 ]
 
-  if(operator === "^"){
+  if(operatorActual === "^"){
     operationResult = Math.pow(firstNum, secondNum)
-  }else if(operator === "/"){
+  }else if(operatorActual === "/"){
     operationResult = firstNum / secondNum
-  }else if(operator === "*"){
+  }else if(operatorActual === "*"){
     operationResult = firstNum * secondNum
-  }else if(operator === "+"){
+  }else if(operatorActual === "+"){
     operationResult = firstNum + secondNum
-  }else if(operator === "-"){
+  }else if(operatorActual === "-"){
     operationResult = firstNum - secondNum
   }
 
   // replace the current operation with its result
   equation.splice(operatorIndex-1, 3, operationResult)
-  if(equation.indexOf(operator) > -1){
+  if(equation.indexOf(operator) > -1 || equation.indexOf("+") > -1 || equation.indexOf("-") > -1){
     return (runOperationsOfType(equation, operator))
   }
 
@@ -52,30 +70,6 @@ const runEquation = (equation) => {
   }
   return newEquation[0]
 
-}
-
-const convertArrayToNumbers = (equation) => {
-  // This turns all numbers that are separate items in the array to numbers
-  // [ 1, 0, "+", "-", 5 ] => [10, "+", -5]
-  var lastOperatorIndex = -1
-  var newEquation = []
-
-  for (var i = 0; i < equation.length; i++) {
-    // If there's an operator, add it and the previous number to newEquation
-    // Unless it's a `-` that's preceded by another operator, which should be treated as an operand
-    if(!Number.isInteger(equation[i]) && !(equation[i] === "-" && lastOperatorIndex === i - 1)){
-      let fullNumber = parseInt(equation.slice(lastOperatorIndex + 1, i).join(''), 10)
-      newEquation.push(fullNumber, equation[i])
-      lastOperatorIndex = i
-    }
-    // If it's the last item, add the number to newEquation
-    else if(i === equation.length - 1){
-      let fullNumber = parseInt(equation.slice(lastOperatorIndex + 1).join(''), 10)
-      newEquation.push(fullNumber)
-    }
-  }
-
-  return newEquation
 }
 
 const checkAnwers = (clickedAnswer, actualAnswer) => {
@@ -96,7 +90,11 @@ const checkAnwers = (clickedAnswer, actualAnswer) => {
   }
 
   for (var i = 0; i < clickedAnswer.length; i++) {
-    if(clickedAnswer[i] !== parseInt(actualAnswer.toString()[i], 10)){
+    let answerToString = actualAnswer.toString()[i]
+    if(
+      clickedAnswer[i] !== parseInt(answerToString, 10) &&
+      !(answerToString === "-" && clickedAnswer[i] === "-")
+    ){
       return T.texts.feedback.incorrect
     }
   }
@@ -112,9 +110,12 @@ const checkEquation = (equation) => {
     return "pending"
   }
 
-  let equationWithNumbers = convertArrayToNumbers(equation.slice(0, equalsIndex))
+  let equationWithNumbers = equation.slice(0, equalsIndex)
   let actualAnswer = runEquation(equationWithNumbers)
-  let clickedAnswer = equation.slice(equalsIndex + 1)
+  var clickedAnswer = equation.slice(equalsIndex + 1)
+  if(clickedAnswer < 0){
+    clickedAnswer = ["-", Math.abs(clickedAnswer)]
+  }
 
   // Returns "correct", "pending", or an error
   return checkAnwers(clickedAnswer, actualAnswer)

@@ -4,7 +4,8 @@ const checkEasyEquations = (equationWithNumbers, isIntArray) => {
 
   for (var i = 0; i < equationWithNumbers.length; i++) {
     if(equationWithNumbers[i] === 0){
-      return T.texts.feedback.zero
+      if(equationWithNumbers.indexOf("=") === -1 || equationWithNumbers.indexOf("=") > i)
+        return T.texts.feedback.zero
     }
   }
 

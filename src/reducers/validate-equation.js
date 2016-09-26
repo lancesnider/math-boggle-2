@@ -5,6 +5,8 @@ import simplifyEquationNumbers from './simplify-equation-numbers'
 import validateOperators from './validate-operators'
 import checkAdjacentTile from './check-adjacent-tile'
 import checkEasyEquations from './check-easy-equations'
+import checkEquation from './check-equation'
+import addToScore from './add-to-score'
 
 const validateEquation = (equation, state, tileClicked = -1) => {
 
@@ -40,13 +42,25 @@ const validateEquation = (equation, state, tileClicked = -1) => {
     })
   }
 
-  return Object.assign({}, state, {
-    equation: equation,
-    clickedTiles: newClickedTiles
-  })
-
+  let equationFeedback = checkEquation(equationWithNumbers)
+  console.log(equationWithNumbers)
+  if(equationFeedback === "pending"){
+    return Object.assign({}, state, {
+      equation: equation,
+      clickedTiles: newClickedTiles
+    })
+  }else if(equationFeedback === "correct"){
+    let newScore = addToScore(state.score, equation)
+    return Object.assign({}, state, {
+      ...equationOverGameData,
+      ...newScore
+    })
+  }else{
+    return Object.assign({}, state, {
+      ...equationOverGameData,
+      feedback: equationFeedback
+    })
+  }
 }
-
-
 
 export default validateEquation
