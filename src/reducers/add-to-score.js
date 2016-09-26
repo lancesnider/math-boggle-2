@@ -15,8 +15,6 @@ const addToScore = (oldScore, equation) => {
       scoreToAdd += 8
   }
 
-  console.log(scoreToAdd)
-
   return {
     feedback: "+"+scoreToAdd,
     score: oldScore + scoreToAdd

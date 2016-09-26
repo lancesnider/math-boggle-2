@@ -49,7 +49,6 @@ const validateEquation = (equation, state, tileClicked = -1) => {
       clickedTiles: newClickedTiles
     })
   }else if(equationFeedback === "correct"){
-    console.log(equation)
     let newScore = addToScore(state.score, equation)
     return Object.assign({}, state, {
       ...equationOverGameData,
