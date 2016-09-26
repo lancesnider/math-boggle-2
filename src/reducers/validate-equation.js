@@ -1,5 +1,5 @@
 
-import {defaultGameData, equationOverGameData}  from './reducer-game-data.js'
+import {equationOverGameData}  from './reducer-game-data.js'
 import findIntegersInEquation from './find-integers-in-equation'
 import simplifyEquationNumbers from './simplify-equation-numbers'
 import validateOperators from './validate-operators'

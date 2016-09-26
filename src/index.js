@@ -5,6 +5,7 @@ import {createStore} from 'redux'
 import App from './components/App'
 import allReducers from './reducers'
 import './index.css'
+// eslint-disable-next-line
 import Texts from './texts'
 
 const store = createStore(allReducers)

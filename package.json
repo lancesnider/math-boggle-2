@@ -7,7 +7,7 @@
     "i18n-react": "^0.3.0-ts1",
     "react-addons-test-utils": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-scripts": "0.4.3",
+    "react-scripts": "0.6.0",
     "redux": "^3.6.0"
   },
   "dependencies": {

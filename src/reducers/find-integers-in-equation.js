@@ -5,9 +5,7 @@ const findIntegersInEquation = (equation) => {
     // -3-2  => [int, int, operator, int]
     // 3*-2  => [int, operator, int, int]
 
-  var newEquation = []
   var isIntArray = []
-  var lastOperatorIndex = -1
 
   for (var i = 0; i < equation.length; i++) {
 
