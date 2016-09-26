@@ -43,13 +43,13 @@ const validateEquation = (equation, state, tileClicked = -1) => {
   }
 
   let equationFeedback = checkEquation(equationWithNumbers)
-  console.log(equationWithNumbers)
   if(equationFeedback === "pending"){
     return Object.assign({}, state, {
       equation: equation,
       clickedTiles: newClickedTiles
     })
   }else if(equationFeedback === "correct"){
+    console.log(equation)
     let newScore = addToScore(state.score, equation)
     return Object.assign({}, state, {
       ...equationOverGameData,

@@ -146,10 +146,48 @@ let tests = [
       ...equationOverGameData,
       feedback: T.texts.feedback.tooShort
     }
+  },
+  // Complete and pending equations
+  {
+    gameData: {
+      equation: [7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", "-", 1]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 2
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: "+30",
+      score: 30
+    }
+  },
+  {
+    gameData: {
+      equation: [7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", "-", 1]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 3
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.incorrect
+    }
+  },
+  {
+    gameData: {
+      equation: [7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", "-"]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 1
+    },
+    expectedGameData: {
+      equation: [7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", "-", 1]
+    }
   }
 ]
-
-//T.texts.feedback.zero
 
 const getUpdatedExpectedData = (test) => {
   let startingameData = Object.assign({}, defaultGameData, test.gameData)
