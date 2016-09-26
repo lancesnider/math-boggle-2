@@ -16,10 +16,10 @@ class Calculator extends Component {
         <div>
           <div className="operators">
             <button onClick={ () => this.props.clickOperator("+") } className="button">+</button>
-            <button onClick={ () => this.props.clickOperator("-") } className="button">-</button>
-            <button onClick={ () => this.props.clickOperator("*") } className="button">*</button>
-            <button onClick={ () => this.props.clickOperator("/") } className="button">/</button>
-            <button onClick={ () => this.props.clickOperator("^") } className="button">^</button>
+            <button onClick={ () => this.props.clickOperator("-") } className="button">−</button>
+            <button onClick={ () => this.props.clickOperator("*") } className="button">×</button>
+            <button onClick={ () => this.props.clickOperator("/") } className="button">÷</button>
+            <button onClick={ () => this.props.clickOperator("^") } className="button">ˆ</button>
           </div>
           <button onClick={ () => this.props.clickOperator("=") } className="button green equals">=</button>
         </div>
