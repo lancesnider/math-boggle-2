@@ -34,7 +34,7 @@ const validateEquation = (equation, state, tileClicked = -1) => {
   }
 
   let equationWithNumbers = simplifyEquationNumbers(equation, isIntArray)
-  let easyFeedback = checkEasyEquations(equationWithNumbers, isIntArray)
+  let easyFeedback = checkEasyEquations(equation, isIntArray)
   if(easyFeedback !== ""){
     return Object.assign({}, state, {
       ...equationOverGameData,

@@ -147,6 +147,18 @@ let tests = [
       feedback: T.texts.feedback.tooShort
     }
   },
+  {
+    gameData: {
+      equation: [3 ,3, 5, "*", 2]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: "="
+    },
+    expectedGameData: {
+      equation: [3 ,3, 5, "*", 2, "="]
+    }
+  },
   // Complete and pending equations
   {
     gameData: {

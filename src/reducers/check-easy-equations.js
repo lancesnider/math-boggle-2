@@ -1,15 +1,15 @@
 import T from 'i18n-react'
 
-const checkEasyEquations = (equationWithNumbers, isIntArray) => {
+const checkEasyEquations = (equation, isIntArray) => {
 
-  for (var i = 0; i < equationWithNumbers.length; i++) {
-    if(equationWithNumbers[i] === 0){
-      if(equationWithNumbers.indexOf("=") === -1 || equationWithNumbers.indexOf("=") > i)
+  for (var i = 0; i < equation.length; i++) {
+    if(equation[i] === 0){
+      if(equation.indexOf("=") === -1 || equation.indexOf("=") > i)
         return T.texts.feedback.zero
     }
   }
 
-  let equalsIndex = equationWithNumbers.indexOf('=')
+  let equalsIndex = equation.indexOf('=')
   if(equalsIndex === -1)
     return ""
 
