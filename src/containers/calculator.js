@@ -10,11 +10,11 @@ function mapStateToProps(state) {
   }
 }
 
-function matchDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     clickOperator: clickOperator,
     clickOperand: clickOperand
   }, dispatch)
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Calculator)
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator)

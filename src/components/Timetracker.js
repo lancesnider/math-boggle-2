@@ -6,6 +6,7 @@ class Timetracker extends Component {
     return (
       <div><T.span text="menu.timeLeft" />157</div>
     )
+    // on when it hits zero, run gameOver()
   }
 }
 
