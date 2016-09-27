@@ -1,7 +1,7 @@
 body {
   background-color: #272822;
   color: white;
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .math-boggle {
@@ -10,13 +10,18 @@ body {
   margin: auto;
 }
 
+.game-info {
+  margin-bottom: 10px;
+}
+
 .button {
   width: 60px;
   height: 60px;
   text-decoration: none;
   border: 1px solid black;
-  font-size: 18px;
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  font-size: 22px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 
 .button:focus {
@@ -25,7 +30,7 @@ body {
 
 .operands .button {
   background-color: #e0e0e0;
-  color: black;
+  color: #444;
 }
 
 .operands .button:hover{
@@ -43,7 +48,7 @@ body {
 .feedback {
   position: absolute;
   font-size: 54px;
-  font-weight: bold;
+  font-weight: 700;
   color: green;
   width: 300px;
   height: 300px;
@@ -59,14 +64,19 @@ body {
 .operators .button {
   background-color: #f5923e;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
+}
+
+.caret {
+  font-size: 36px;
+  padding-top: 5px;
 }
 
 .operators .button:hover {
   background-color: #c2732f;
 }
 
-.operators .button:active, .operators .button:focus {
+.operators .button:active, .operators {
   background-color: #a46026;
 }
 

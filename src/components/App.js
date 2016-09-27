@@ -7,8 +7,10 @@ import Feedback from '../containers/feedback'
 
 const App = () => (
   <div className="App math-boggle">
-    <TimeTracker />
-    <Scoreboard />
+    <div className="game-info">
+      <TimeTracker />
+      <Scoreboard />
+    </div>
     <Feedback />
     <MainMenu />
     <Calculator />
