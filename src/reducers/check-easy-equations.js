@@ -3,7 +3,7 @@ import T from 'i18n-react'
 const checkEasyEquations = (equation, isIntArray) => {
 
   for (var i = 0; i < equation.length; i++) {
-    if(equation[i] === 0){
+    if(equation[i] === 0 && !isIntArray[i-1]){
       if(equation.indexOf("=") === -1 || equation.indexOf("=") > i)
         return T.texts.feedback.zero
     }

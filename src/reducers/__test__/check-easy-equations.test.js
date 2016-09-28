@@ -11,4 +11,5 @@ it('checks for easy equations', () => {
   expect(checkEasyEquation([4, "+", 0, "*", 300], [true, false, true, false, true, true, true])).toEqual(T.texts.feedback.zero),
   expect(checkEasyEquation([0], [true])).toEqual(T.texts.feedback.zero)
   expect(checkEasyEquation([5, 6, 5, "*", 3, "="], [true, true, true, false, true, false])).toEqual("")
+  expect(checkEasyEquation([5,0], [true, true])).toEqual("")
 })
