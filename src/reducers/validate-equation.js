@@ -7,6 +7,7 @@ import checkAdjacentTile from './check-adjacent-tile'
 import checkEasyEquations from './check-easy-equations'
 import checkEquation from './check-equation'
 import addToScore from './add-to-score'
+import checkUsedPatterns from './check-used-patterns'
 
 const validateEquation = (equation, state, tileClicked = -1) => {
 
@@ -50,9 +51,17 @@ const validateEquation = (equation, state, tileClicked = -1) => {
     })
   }else if(equationFeedback === "correct"){
     let newScore = addToScore(state.score, equation)
+    let newUsedPattern = checkUsedPatterns(state.usedPatterns, equation)
+    if(newUsedPattern.pattern === state.usedPatterns){
+      return Object.assign({}, state, {
+        ...equationOverGameData,
+        feedback: newUsedPattern.feedback
+      })
+    }
     return Object.assign({}, state, {
       ...equationOverGameData,
-      ...newScore
+      ...newScore,
+      usedPatterns: newUsedPattern.pattern
     })
   }else{
     return Object.assign({}, state, {

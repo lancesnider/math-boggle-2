@@ -171,7 +171,8 @@ let tests = [
     expectedGameData: {
       ...equationOverGameData,
       feedback: "+30",
-      score: 30
+      score: 30,
+      usedPatterns: [15192343187153056000]
     }
   },
   {
@@ -197,6 +198,22 @@ let tests = [
     },
     expectedGameData: {
       equation: [7, "+", 1, "*", 9, "-", 3, "*", 8, "-", 4, "=", "-", 1]
+    }
+  },
+  // Correct, but repeat equation
+  {
+    gameData: {
+      equation: [8, "/", 2, "="],
+      // This used pattern is from `2*4=8`
+      usedPatterns: [160979]
+    },
+    action: {
+      type: 'CLICK_CALCULATOR',
+      itemClicked: 4
+    },
+    expectedGameData: {
+      ...equationOverGameData,
+      feedback: T.texts.feedback.repeat
     }
   }
 ]

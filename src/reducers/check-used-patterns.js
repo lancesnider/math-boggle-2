@@ -9,22 +9,43 @@
 //   Associated prime numbers:    5,  7,  11
 //   Unique ID for this pattern:  5*7*11 = 385
 // The ID for `1+2=3`, `2+1=3` will be the same, so the player will only get points for the first.
+
+import T from 'i18n-react'
+
 const primeNumbers = [3,5,7,11,13,17,19,23,29,31]
+const primeOperators = {
+  plusMinus: 53,
+  multiplyDivide: 61,
+  factor: 103
+}
 
 const checkUsedPatterns = (usedPatterns, equation) => {
 
   var uniqueId = 1
-  equation.map(function(item){
-    if(item.isInteger(item)){
+  for(let item of equation){
+    if(Number.isInteger(item)){
       uniqueId *= primeNumbers[item]
+    }else{
+      if(item === "+" || item === "-"){
+        uniqueId *= primeOperators.plusMinus
+      }else if(item === "*" || item === "/"){
+        uniqueId *= primeOperators.multiplyDivide
+      }else if(item === "^"){
+        uniqueId *= primeOperators.factor
+      }
     }
-  })
-
-  if(usedPatterns.indexOf(uniqueId) > -1){
-    return 0
   }
 
-  return uniqueId
+  if(usedPatterns.indexOf(uniqueId) > -1){
+    return {
+      pattern: usedPatterns,
+      feedback: T.texts.feedback.repeat,
+    }
+  }
+
+  return {
+    pattern: [...usedPatterns, uniqueId]
+  }
 }
 
 export default checkUsedPatterns
