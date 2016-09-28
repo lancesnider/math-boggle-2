@@ -9,6 +9,7 @@ T.setTexts({
   feedback: {
     incorrect: "Incorrect",
     zero: "×",
-    tooShort: "Too short"
+    tooShort: "Too short",
+    repeat: "Repeat"
   }
 })
