@@ -38,6 +38,7 @@ export default function (state=defaultGameData, action) {
 			}
 			return Object.assign({}, state, {
 				isPlaying: true,
+				score: 0,
 				tileNumbers: randomTileNumbers()
 			})
 

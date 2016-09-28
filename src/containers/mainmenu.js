@@ -9,8 +9,8 @@ function mapStateToProps(state) {
 	}
 }
 
-function matchDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({clickPlay: clickPlay}, dispatch)
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(MainMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(MainMenu)
