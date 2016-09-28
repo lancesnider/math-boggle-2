@@ -22,7 +22,6 @@ class Timetracker extends Component {
 
   countdown = () => {
     let newTimeRemaining = this.state.timeRemaining - 1
-    console.log(newTimeRemaining)
     if(newTimeRemaining <= 0){
       this.setState({ timeRemaining: 0 })
       clearInterval(this.state.intervalID)
