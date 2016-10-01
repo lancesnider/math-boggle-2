@@ -1,15 +1,39 @@
 # Math Boggle
 
-It's like Boggle, but for math nerds. The longer the equation and the more complex operators, the more points you'll earn. 
+Try to string together equations from the numbers on the board. The longer the equation and the more complex operators, the more points you'll earn. 
 
 ![math-boggle](https://cloud.githubusercontent.com/assets/3202211/17510781/a88e7888-5e63-11e6-9f70-b16bac39b6fb.gif)
 
-## Development Notes
+#### Rules
 
-This is actually v2. You can find a fully functional version of [v1 here](https://github.com/lancesnider/math-boggle). I just wanted to try it again, but better. 
+- Each number you click needs to touch the previous number (for `1+2=3`, 1 must touch 2 and 2 must touch 3)
+- You need to remember the order of operations (`1+3*2=7`, not `8`)
+- You can't multiply, divide, add to, or subtract from zero (bad: `10*0=0`)
+- There needs to be at least one operator to the left of the `=` (bad: `123=123`)
+- Don't repeat equations, even if they're in a different order (`1+2=3` is the same as `3-1=3`)
+
+## Installation
+
+Clone the repo 
+```shell
+git clone git@github.com:lancesnider/math-boggle-2.git
+```
+Install the packages
+```shell
+npm install
+```
+Run Math Boggle
+```shell
+npm start
+```
+
+Testing
+```shell
+npm test
+```
 
 #### Differences between [v1](https://github.com/lancesnider/math-boggle) and v2: 
 
-1. I won't be using `eval` to run the equations. Instead each operation will have its own function. 
-2. I'll be using Flux architecture so there isn't such a spider web of updating components. 
-3. I'll run tests, specifically using Enzyme. 
+1. This version runs tests (Jest)
+2. Rather than using `eval` to solve the equations, this version uses pure functions
+3. This version uses Redux so there isn't such a spider web of updating components
