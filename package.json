@@ -1,5 +1,6 @@
 {
   "name": "math-boggle-2",
+  "homepage": "http://aprendagames.com/games/math-boggle/",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
