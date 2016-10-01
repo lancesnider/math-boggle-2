@@ -2,7 +2,7 @@
 
 Try to string together equations from the numbers on the board. The longer the equation and the more complex operators, the more points you'll earn. 
 
-![math-boggle](https://cloud.githubusercontent.com/assets/3202211/17510781/a88e7888-5e63-11e6-9f70-b16bac39b6fb.gif)
+![Math Boggle](https://cloud.githubusercontent.com/assets/3202211/19010318/81661ca6-873b-11e6-9949-bbd1aa096fd6.gif)
 
 #### Rules
 
@@ -26,7 +26,6 @@ Run Math Boggle
 ```shell
 npm start
 ```
-
 Testing
 ```shell
 npm test
