@@ -3,6 +3,9 @@
 # dependencies
 node_modules
 
+# planning
+planning
+
 # production
 build
 
