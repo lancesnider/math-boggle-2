@@ -1,7 +1,6 @@
 import getRelativeTilePosition from '../utils/get-relative-tile-position'
 
 const checkAdjacentTile = (clickedTiles, newClickedTile) =>  {
-
   // If this is the first tile clicked, just return the new tile
   let clickedTilesLength = clickedTiles.length
   if(clickedTilesLength === 0){
@@ -15,9 +14,7 @@ const checkAdjacentTile = (clickedTiles, newClickedTile) =>  {
     return [...clickedTiles, newClickedTile]
   }
 
-  // If they're not, return an empty array
   return []
-
 }
 
 export default checkAdjacentTile

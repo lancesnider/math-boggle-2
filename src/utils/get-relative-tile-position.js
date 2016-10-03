@@ -1,4 +1,4 @@
-const getTileRowColumn = (newTile, lastTile) => {
+const getRelativeTilePosition = (newTile, lastTile) => {
 
   let lastColumnNum = lastTile % 5
   let lastRowNum = Math.floor(lastTile/5)
@@ -11,4 +11,4 @@ const getTileRowColumn = (newTile, lastTile) => {
   }
 }
 
-export default getTileRowColumn
+export default getRelativeTilePosition

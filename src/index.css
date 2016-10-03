@@ -20,6 +20,10 @@ body {
   height: 60px;
 }
 
+.visual-equation {
+  position: absolute;
+}
+
 .active-circle {
   position: absolute;
   border: 3px solid #688035;
@@ -31,9 +35,10 @@ body {
   pointer-events:none;
 }
 
-.active-circle-disabled-true {
-  border: 3px solid red;
-  display: none;
+.circle-connector {
+  height: 3px;
+  background-color: #688035;
+  position: relative;
 }
 
 .button {
@@ -64,7 +69,7 @@ body {
 }
 
 .operands .button:disabled, .operands .button:active {
-  background-color: #999;
+  background-color: #c5c5c5;
 }
 
 .feedback {
@@ -108,6 +113,7 @@ body {
   height: 300px;
   position: absolute;
   color: white;
+  z-index: 100;
 }
 
 .play:disabled {
