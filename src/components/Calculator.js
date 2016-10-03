@@ -5,9 +5,6 @@ class Calculator extends Component {
   render() {
     return (
       <div>
-        <div className="feedback">
-          <div className="hidden" >+10</div>
-        </div>
         <div className="operands">
           {
             Operands(this.props)

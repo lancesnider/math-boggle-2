@@ -14,6 +14,33 @@ body {
   margin-bottom: 10px;
 }
 
+.operands-holder {
+  float: left;
+  width: 60px;
+  height: 60px;
+}
+
+.visual-equation {
+  position: absolute;
+}
+
+.active-circle {
+  position: absolute;
+  border: 3px solid #688035;
+  margin: 9px;
+  width: 36px;
+  height: 36px;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  pointer-events:none;
+}
+
+.circle-connector {
+  height: 3px;
+  background-color: #688035;
+  position: relative;
+}
+
 .button {
   width: 60px;
   height: 60px;
@@ -42,7 +69,7 @@ body {
 }
 
 .operands .button:disabled, .operands .button:active {
-  background-color: #999;
+  background-color: #c5c5c5;
 }
 
 .feedback {
@@ -50,7 +77,7 @@ body {
   font-size: 54px;
   font-weight: 700;
   line-height: 300px;
-  color: green;
+  color: #688035;
   width: 300px;
   height: 300px;
   vertical-align: center;
@@ -86,6 +113,7 @@ body {
   height: 300px;
   position: absolute;
   color: white;
+  z-index: 100;
 }
 
 .play:disabled {

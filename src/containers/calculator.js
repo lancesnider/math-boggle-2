@@ -5,6 +5,7 @@ import Calculator from '../components/Calculator'
 
 function mapStateToProps(state) {
   return {
+    equation: state.gameData.equation,
     tileNumbers: state.gameData.tileNumbers,
     clickedTiles: state.gameData.clickedTiles
   }

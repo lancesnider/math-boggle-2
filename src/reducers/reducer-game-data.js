@@ -22,12 +22,12 @@ export const equationOverGameData = {
 	equation: []
 }
 
-// const gameOverGameData = {
-// 	isPlaying: false,
-// 	clickedTiles: [],
-// 	equation: [],
-// 	usedPatterns: []
-// }
+const gameOverGameData = {
+	isPlaying: false,
+	clickedTiles: [],
+	equation: [],
+	usedPatterns: []
+}
 
 export default function (state=defaultGameData, action) {
 
@@ -46,12 +46,7 @@ export default function (state=defaultGameData, action) {
 			if(state.isPlaying === false) {
 				return state
 			}
-			return Object.assign({}, state, {
-				isPlaying: false,
-				activeTiles: [],
-				equation: [],
-				usedPatterns: []
-			})
+			return Object.assign({}, state, gameOverGameData)
 
 		case "CLICK_CALCULATOR":
 			let equationWithNewItem = [ ...state.equation, action.itemClicked ]
