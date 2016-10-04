@@ -22,6 +22,7 @@ body {
 
 .visual-equation {
   position: absolute;
+  pointer-events:none;
 }
 
 .active-circle {
@@ -35,10 +36,33 @@ body {
   pointer-events:none;
 }
 
-.circle-connector {
+.connector {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+}
+
+.line-connector {
   height: 3px;
+  width: 22px;
+  margin: 28.5px auto;
   background-color: #688035;
   position: relative;
+}
+
+.visual-operator {
+  width: 14px;
+  height: 14px;
+  background-color: #f5923e;
+  position: absolute;
+  z-index: 10;
+  margin: 23px;
+  text-align: center;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
 }
 
 .button {
