@@ -4,7 +4,7 @@ Try to string together equations from the numbers on the board. The longer the e
 
 Play it online: http://aprendagames.com/games/math-boggle/index.html
 
-![Math Boggle](https://cloud.githubusercontent.com/assets/3202211/19010318/81661ca6-873b-11e6-9949-bbd1aa096fd6)
+![Math Boggle](https://cloud.githubusercontent.com/assets/3202211/19062510/037f6c0a-89b8-11e6-867f-a9b160715d44.gif)
 
 #### Rules
 
