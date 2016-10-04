@@ -93,7 +93,7 @@ body {
 }
 
 .operands .button:disabled, .operands .button:active {
-  background-color: #c5c5c5;
+  background-color: #aaaaaa;
 }
 
 .feedback {
