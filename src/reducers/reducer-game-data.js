@@ -29,7 +29,7 @@ const gameOverGameData = {
 	usedPatterns: []
 }
 
-export default function (state=defaultGameData, action) {
+export default function (state=defaultGameData, action=-1) {
 
 	switch(action.type) {
 		case "CLICK_PLAY":
