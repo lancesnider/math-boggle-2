@@ -85,7 +85,7 @@ body {
 }
 
 .operands .button:hover{
-  background-color: #ccc;
+  background-color: #efefef;
 }
 
 .operands .button:focus {

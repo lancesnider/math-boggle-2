@@ -1,4 +1,4 @@
-import getRelativeTilePosition from '../utils/get-relative-tile-position'
+import getRelativeTilePosition from './get-relative-tile-position'
 
 const checkAdjacentTile = (clickedTiles, newClickedTile) =>  {
   // If this is the first tile clicked, just return the new tile
