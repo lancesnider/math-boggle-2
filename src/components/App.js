@@ -4,6 +4,7 @@ import TimeTracker from '../containers/timetracker'
 import MainMenu from '../containers/mainmenu'
 import Calculator from '../containers/calculator'
 import Feedback from '../containers/feedback'
+import Instructions from './Instructions'
 
 const App = () => (
   <div className="App math-boggle">
@@ -14,6 +15,7 @@ const App = () => (
     <Feedback />
     <MainMenu />
     <Calculator />
+    <Instructions />
   </div>
 )
 

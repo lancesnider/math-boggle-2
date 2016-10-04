@@ -14,6 +14,10 @@ body {
   margin-bottom: 10px;
 }
 
+.operands {
+  height: 300px;
+}
+
 .operands-holder {
   float: left;
   width: 60px;
@@ -160,4 +164,26 @@ body {
 
 .green:active {
   background-color: #4f6226;
+}
+
+.instructions {
+  padding: 5px 2px;
+}
+
+.instructions img {
+  width: 50%;
+}
+
+.instructions .code {
+  color: #f5923e;
+  background-color: #555;
+  padding: 0 3px;
+}
+
+.instructions .example {
+  color: #888;
+}
+
+.instructions ul {
+  padding-left: 20px;
 }
