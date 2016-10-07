@@ -1,11 +1,5 @@
-import randomTileNumbers from './random-tile-numbers'
-// import checkUsedPatterns from './check-used-patterns'
-// //import addToScore from './add-to-score'
-// import checkAdjacentTile from './check-adjacent-tile'
-// import checkEquation from './check-equation'
-// import checkEasyEquations from './check-easy-equations'
-// import checkOperators from './check-operators'
-import validateEquation from './validate-equation'
+import randomTileNumbers from '../utils/random-tile-numbers'
+import validateEquation from '../utils/validate-equation'
 
 export const defaultGameData = {
 	isPlaying: false,
