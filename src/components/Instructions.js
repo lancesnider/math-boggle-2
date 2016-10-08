@@ -9,7 +9,7 @@ class Instructions extends Component {
         <p>
           Find equations on the game board, like so:
         </p>
-        <img src={imagePath} />
+        <img alt='Math Boggle Instructions' src={imagePath} />
         <p>
           The longer the equation and the more difficult operators you use, the more points you'll earn.
         </p>
