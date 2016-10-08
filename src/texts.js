@@ -4,7 +4,9 @@ T.setTexts({
   menu: {
     play: "Play",
     score: "Score: ",
-    timeLeft: "Time Left: "
+    timeLeft: "Time Left: ",
+    highScore: "High Score: "
+
   },
   feedback: {
     incorrect: "Incorrect",

@@ -8,7 +8,8 @@ export const defaultGameData = {
 	tileNumbers: [],
 	equation: [],
 	usedPatterns: [],
-	feedback: ""
+	feedback: "",
+	highScore: 0
 }
 
 export const equationOverGameData = {
@@ -40,7 +41,11 @@ export default function (state=defaultGameData, action=-1) {
 			if(state.isPlaying === false) {
 				return state
 			}
-			return Object.assign({}, state, gameOverGameData)
+			let newHighScore = state.score > state.highScore ? state.score : state.highScore
+			return Object.assign({}, state, {
+				...gameOverGameData,
+				highScore: newHighScore
+			})
 
 		case "CLICK_CALCULATOR":
 			let equationWithNewItem = [ ...state.equation, action.itemClicked ]
