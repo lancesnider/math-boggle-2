@@ -21,7 +21,7 @@ const Operands = (propsData) => (
           {clickedTileIndex > 0  ? visualEquation(propsData.clickedTiles, clickedTileIndex, propsData.equation) : ""}
         </div>
         <button
-          onClick={ () => propsData.clickOperand(number, key) }
+          onMouseDown={ () => propsData.clickOperand(number, key) }
           className="button"
           style={notAdjacentStyle}
           disabled={isDisabled}
