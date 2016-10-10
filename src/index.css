@@ -2,6 +2,8 @@ body {
   background-color: #272822;
   color: white;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .math-boggle {
@@ -120,11 +122,9 @@ body {
 .operators .button {
   background-color: #f5923e;
   color: white;
-  font-size: 32px;
 }
 
 .caret {
-  font-size: 36px;
   padding-top: 5px;
 }
 
