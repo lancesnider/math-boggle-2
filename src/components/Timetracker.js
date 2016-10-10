@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import T from 'i18n-react'
 
-let totalTime = 99
+let totalTime = 200
 
 class Timetracker extends Component {
 
