@@ -14,9 +14,6 @@ const checkEasyEquations = (equation, isIntArray) => {
       if(equation[i - 1] === 1 && !isIntArray[i-2]){
         return T.texts.feedback.powerOf1
       }
-      if(equation[i + 1] === 1 && !isIntArray[i+2]){
-        return T.texts.feedback.powerOf1
-      }
     }
   }
 

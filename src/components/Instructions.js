@@ -20,6 +20,7 @@ class Instructions extends Component {
           <li>You can't multiply, divide, add to, or subtract from zero <span className="example">(bad: <span className="code">10×0=0</span>)</span></li>
           <li>There needs to be at least one operator to the left of the <span className="code">=</span> sign <span className="example">(bad: <span className="code">123=123</span>)</span></li>
           <li>Don't repeat equations, even if they're in a different order <span className="example">(<span className="code">1+2=3</span> is the same as <span className="code">3-1=3</span>)</span></li>
+          <li>Don't do 1 to the power of... anything. <span className="example">(<span className="code">1^2305281=1</span> is too easy)</span></li>
         </ul>
       </div>
     )
