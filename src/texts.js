@@ -12,6 +12,7 @@ T.setTexts({
     incorrect: "Incorrect",
     zero: "×",
     tooShort: "Too short",
-    repeat: "Repeat"
+    repeat: "Repeat",
+    powerOf1: "Too easy"
   }
 })
