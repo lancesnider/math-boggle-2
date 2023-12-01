@@ -4,16 +4,16 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "enzyme": "^2.4.1",
-    "i18n-react": "^0.3.0-ts1",
-    "react-addons-test-utils": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-scripts": "0.6.0",
-    "redux": "^3.6.0"
+    "enzyme": "^3.11.0",
+    "i18n-react": "^0.7.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-redux": "^8.1.3",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1"
   },
   "dependencies": {
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,7 +21,16 @@
     "eject": "react-scripts eject",
     "test": "react-scripts test --env=jsdom"
   },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/config/eslint.js"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
